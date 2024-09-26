@@ -1,24 +1,24 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom"; // Para redirigir al usuario después del registro
+import { useNavigate } from "react-router-dom"; 
 import { Context } from "../store/appContext";
 
 export const Signup = () => {
-    const { actions } = useContext(Context); // Accedemos a las acciones del estado global
+    const { actions } = useContext(Context); 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(null); // Para mostrar errores si ocurre alguno
-    const navigate = useNavigate(); // Para redirigir después de un registro exitoso
+    const [error, setError] = useState(null); 
+    const navigate = useNavigate(); 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(null); // Limpiar el error anterior (si lo hay)
+        setError(null); 
 
-        const success = await actions.signup(email, password); // Llamamos a la acción signup
+        const success = await actions.signup(email, password); 
 
         if (success) {
-            navigate("/login"); // Redirigimos al usuario a la página de login si el registro es exitoso
+            navigate("/login"); 
         } else {
-            setError("Error en el registro. Inténtalo de nuevo."); // Mostramos un error si el registro falla
+            setError("Error en el registro. Inténtalo de nuevo."); 
         }
     };
 

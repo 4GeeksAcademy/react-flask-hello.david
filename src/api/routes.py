@@ -15,6 +15,7 @@ CORS(api)
 
 
 @api.route('/hello', methods=['POST', 'GET'])
+@jwt_required()
 def handle_hello():
 
     response_body = {
@@ -61,3 +62,12 @@ def login_usuario():
         access_token=create_access_token(identity=user_login.id)
         return jsonify({"token": access_token, "user_id": user_login.id})
 
+@api.route('/private', methods=['GET'])
+@jwt_required()
+def private(): 
+    current_user_id=get_jwt_identity()
+    response_body = {
+        "msg": "pagina privada",
+        "user_id": current_user_id,
+    }
+    return jsonify(response_body), 200

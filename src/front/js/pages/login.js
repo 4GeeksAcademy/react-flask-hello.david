@@ -16,7 +16,7 @@ export const Login = () => {
         const success = await actions.login(email, password); // Llama a la función login en el store
 
         if (success) {
-            navigate("/paginaPrivada"); // Redirige a una página privada si el login es exitoso
+            navigate("/PrivateRoute"); // Redirige a una página privada si el login es exitoso
         } else {
             setError("Correo o contraseña incorrectos. Inténtalo de nuevo.");
         }
